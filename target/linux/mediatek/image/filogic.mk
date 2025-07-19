@@ -1869,7 +1869,7 @@ TARGET_DEVICES += zbtlink_zbt-z8103ax
 
 define Device/zbtlink_zbt-z8103ax-c
   DEVICE_VENDOR := Zbtlink
-  DEVICE_MODEL := ZBT-Z8103AX-C 128M
+  DEVICE_MODEL := ZBT-Z8103AX-C
   DEVICE_DTS := mt7981b-zbtlink-zbt-z8103ax-c
   DEVICE_DTS_DIR := ../dts
   DEVICE_PACKAGES := kmod-mt7915e kmod-mt7981-firmware mt7981-wo-firmware
