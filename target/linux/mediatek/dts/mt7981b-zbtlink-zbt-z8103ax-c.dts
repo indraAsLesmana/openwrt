@@ -5,8 +5,8 @@
 #include "mt7981.dtsi"
 
 / {
-	model = "Zbtlink ZBT-Z8103AX-C 128M";
-	compatible = "zbtlink,zbt-z8103axde128m", "mediatek,mt7981";
+	model = "Zbtlink ZBT-Z8103AX-C";
+	compatible = "zbtlink,zbt-z8103ax-c", "mediatek,mt7981";
 
 	aliases {
 		serial0 = &uart0;
