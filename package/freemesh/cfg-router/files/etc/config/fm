@@ -1,0 +1,4 @@
+config 'router' 'router'
+	option 'firstboot' '1'
+	option 'secret' ''
+	option 'next_static' '2'

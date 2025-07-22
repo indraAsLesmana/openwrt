@@ -1,0 +1,6 @@
+config 'node' 'node'
+	option 'state' 'firstboot'
+	option 'secret' ''
+	option 'gateway_ip' ''
+
+config 'router' 'router'

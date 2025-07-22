@@ -1,0 +1,12 @@
+WIRELESS.JS OVERRIDE REMOVED
+
+The custom wireless.js file that was overriding luci-mod-network's
+version has been completely removed from the FreeMesh system.
+
+The system now uses the default LuCI wireless interface without
+any custom modifications. This eliminates the radio configuration
+issues that were caused by the custom wireless.js implementation.
+
+Historical note: The original approach involved overwriting the
+LuCI wireless.js file, which caused minification issues and
+radio configuration problems.
