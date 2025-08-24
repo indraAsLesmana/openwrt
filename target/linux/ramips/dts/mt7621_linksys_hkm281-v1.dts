@@ -1,0 +1,138 @@
+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+
+#include "mt7621_linksys_ea7xxx.dtsi"
+
+/ {
+	compatible = "linksys,hkm281-v1", "mediatek,mt7621-soc";
+	model = "Linksys hkm281 v1";
+};
+
+/* override EEPROM size to 0x400 for MT7603 */
+&eeprom_factory_0 {
+	reg = <0x0 0x400>;
+};
+
+&nand {
+    partitions {
+        compatible = "fixed-partitions";
+        #address-cells = <1>;
+        #size-cells = <1>;
+
+        partition@0 {
+            label = "boot";
+            reg = <0x0 0x80000>;
+            read-only;
+        };
+
+        partition@80000 {
+            label = "u_env";
+            reg = <0x80000 0x40000>;
+        };
+
+        factory: partition@c0000 {
+            label = "factory";
+            reg = <0xc0000 0x40000>;
+            read-only;
+
+            nvmem-layout {
+                compatible = "fixed-layout";
+                #address-cells = <1>;
+                #size-cells = <1>;
+
+                eeprom_factory_0: eeprom@0 {
+                    reg = <0x0 0x4da8>;
+                };
+
+                eeprom_factory_8000: eeprom@8000 {
+                    reg = <0x8000 0x4da8>;
+                };
+
+                macaddr_factory_e000: mac@e000 {
+                    reg = <0xe000 0x6>;
+                };
+
+                macaddr_factory_e006: mac@e006 {
+                    reg = <0xe006 0x6>;
+                };
+            };
+        };
+
+        partition@100000 {
+            label = "s_env";
+            reg = <0x100000 0x40000>;
+        };
+
+        partition@140000 {
+            label = "devinfo";
+            reg = <0x140000 0x40000>;
+            read-only;
+        };
+
+        partition@180000 {
+            label = "kernel";
+            reg = <0x180000 0x400000>;
+        };
+
+        partition@580000 {
+            label = "ubi";
+            reg = <0x580000 0x2400000>;
+        };
+
+        partition@2980000 {
+            label = "alt_kernel";
+            reg = <0x2980000 0x400000>;
+            read-only;
+        };
+
+        partition@2d80000 {
+            label = "alt_rootfs";
+            reg = <0x2d80000 0x2400000>;
+            read-only;
+        };
+
+        partition@5180000 {
+            label = "sysdiag";
+            reg = <0x5180000 0x100000>;
+            read-only;
+        };
+
+        partition@5280000 {
+            label = "syscfg";
+            reg = <0x5280000 0x2d00000>;
+            read-only;
+        };
+    };
+};
+
+&gmac0 {
+    nvmem-cells = <&macaddr_factory_e000>;
+    nvmem-cell-names = "mac-address";
+};
+
+&gmac1 {
+    nvmem-cells = <&macaddr_factory_e006>;
+    nvmem-cell-names = "mac-address";
+};
+
+&ethphy0 {
+	/delete-property/ interrupts;
+};
+
+&switch0 {
+	ports {
+		port@1 {
+			status = "okay";
+			label = "lan3";
+		};
+
+		port@2 {
+			status = "okay";
+			label = "lan2";
+		};
+
+		port@3 {
+			status = "okay";
+			label = "lan1";
+		};
+	};
+};

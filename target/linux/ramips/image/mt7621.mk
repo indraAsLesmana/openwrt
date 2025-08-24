@@ -1913,6 +1913,15 @@ define Device/linksys_ea6350-v4
 endef
 TARGET_DEVICES += linksys_ea6350-v4
 
+define Device/linksys_hkm281-v1
+  $(Device/linksys_ea7xxx)
+  DEVICE_MODEL := hkm281
+  DEVICE_VARIANT := v1
+  LINKSYS_HWNAME := hkm281
+  DEVICE_PACKAGES += kmod-mt7603 kmod-mt7663-firmware-ap
+endef
+TARGET_DEVICES += linksys_hkm281-v1
+
 define Device/linksys_ea7300-v1
   $(Device/linksys_ea7xxx)
   DEVICE_MODEL := EA7300
